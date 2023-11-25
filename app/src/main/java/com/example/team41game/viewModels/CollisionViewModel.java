@@ -242,12 +242,19 @@ public class CollisionViewModel extends ViewModel {
                 if (enemyPos.equals(pos1) || enemyPos.equals(pos2)
                         || enemyPos.equals(pos3) || enemyPos.equals(pos4)) {
 
-                    // increase player score
-
-                    // remove enemy from enemyList (which will remove it from enemiesMap)
-                    // so that it will no longer be drawn
-                    //enemyList.remove(enemy);
                     enemy.die();
+
+                    // Check if the enemy is defeated (no longer alive).
+                    if (!enemy.isAlive()) {
+                        // Increase the player's score by 5 points.
+                        int currentScore = player.getScore();
+                        player.setScore(currentScore + 5);
+                    }
+
+                    // Remove the defeated enemy from the list to prevent further processing.
+                    enemyList.remove(enemy);
+
+                    // Return the enemy that was attacked.
                     return enemy;
                 }
             }

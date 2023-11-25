@@ -238,6 +238,10 @@ public class GameScreenViewModel extends ViewModel {
         default:
             player.setHealth(player.getHealth());
         }
+
+        // Decrease player score by 2 points when attacked
+        int currentScore = player.getScore();
+        player.setScore(Math.max(0, currentScore - 2)); // Ensures score doesn't go below 0
     }
 
     public boolean isPlayerDead() {
